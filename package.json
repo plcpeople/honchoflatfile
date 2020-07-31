@@ -1,0 +1,25 @@
+{
+  "name": "honchoflatfile",
+  "description": "Monitors a file, typically a CSV, for changes and reports values found in specific columns as numbers, mostly for use with the honcho program",
+  "version": "0.1.0",
+  "author": {
+    "name": "Dana Moffit",
+    "email": "nodejsplc@gmail.com"
+  },
+  "keywords": [
+    "PLC",
+    "flat file"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plcpeople/honchoflatfile"
+  },
+  "main": "honchoflatfile.js",
+  "engine": "node 10.x.x",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.4.1",
+    "save": "^2.4.0",
+    "tail": "^2.0.4"
+  }
+}
