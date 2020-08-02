@@ -160,15 +160,16 @@ HonchoFlatFile.prototype.connectNow = function(cParam) {
 			outputLog('Change detected on the file we are already monitoring.',1);
 		} else {
 			outputLog('Detected a file changed in the directory we are monitoring - ' + filepath);
-			if (typeof(cParame.ext) !== "string" || cParam.ext.toLowerCase() === path.extname(filepath).toLowerCase()) {
-				outputLog('File extension matches or file extension was not specified, switching to this file - ' + filepath);
+			if (typeof(cParam.ext) !== "string" || cParam.ext.toLowerCase() === path.extname(filepath).toLowerCase()) {
+				var prefix = (typeof(cParam.ext) === "string") ? 'File extension matches' : 'File extension was not specified';
+				outputLog(prefix + ', switching to this file - ' + filepath);
 				self.tailingFile = filepath;
 				if (self.tail) {
 					self.tail.unwatch();
 				}
 				self.tail = new tail(filepath, { encoding: self.encoding });
 				self.tail.on('line', function(data) {
-					outputLog("Data recd:" + data, 2);
+					outputLog("Data recieved from file tail:" + data, 2);
 					self.onResponse.apply(self, arguments);
 				});
 				self.tail.on('error', function(error) {
@@ -210,7 +211,7 @@ HonchoFlatFile.prototype.readWriteError = function(e) {
 
 HonchoFlatFile.prototype.packetTimeout = function(packetType, packetSeqNum) {
 	var self = this;
-	outputLog('PacketTimeout called with type ' + packetType + ' and seq ' + packetSeqNum, 1, self.connectionID);
+	outputLog('PacketTimeout called with type ' + packetType, 1, self.connectionID);
 	if (packetType === "connect") {
 		outputLog("TIMED OUT connecting to the server - Disconnecting", 0, self.connectionID);
 		outputLog("Wait for 2 seconds then try again.", 0, self.connectionID);
