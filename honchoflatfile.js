@@ -160,7 +160,7 @@ HonchoFlatFile.prototype.connectNow = function(cParam) {
 			outputLog('Change detected on the file we are already monitoring.',1);
 		} else {
 			outputLog('Detected a file changed in the directory we are monitoring - ' + filepath);
-			if (!cParam.ext || cParam.ext === path.extname(filepath)) {
+			if (typeof(cParame.ext) !== "string" || cParam.ext.toLowerCase() === path.extname(filepath).toLowerCase()) {
 				outputLog('File extension matches or file extension was not specified, switching to this file - ' + filepath);
 				self.tailingFile = filepath;
 				if (self.tail) {
