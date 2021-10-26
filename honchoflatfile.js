@@ -31,6 +31,7 @@
 // when using this library.  Test thoroughly in a laboratory environment.
 
 
+var fs = require('fs');
 var net = require("net");
 var util = require("util");
 var chokidar = require("chokidar");
@@ -152,6 +153,12 @@ HonchoFlatFile.prototype.connectNow = function(cParam) {
 	
 	self.isoConnectionState = 1; // Trying to connect
 
+	// Check if path exists before going any further
+	if (!fs.existsSync(cParam.path)) {
+		self.connectError.apply(self, arguments);
+		return;
+	}
+
 	// Note this will NOT catch "new" file creation, you'd have to monitor the new event for that, or "all" events.
 	// See the chokidar docs.
 	// Alternative is the fromBeginning option in the tail
@@ -204,7 +211,7 @@ HonchoFlatFile.prototype.connectError = function(e) {
 
 HonchoFlatFile.prototype.readWriteError = function(e) {
 	var self = this;
-	outputLog('We Caught a read/write error ' + e.code + ' - will DISCONNECT and attempt to reconnect.');
+	outputLog('We Caught a read/write error ' + e.code + ' - will DISCONNECT and attempt to reconnect.', 0, self.connectionID);
 	self.isoConnectionState = 0;
 	self.connectionReset();
 }
