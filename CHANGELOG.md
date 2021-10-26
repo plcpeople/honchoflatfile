@@ -1,3 +1,8 @@
+Version: 0.1.3
+------------
+- Check if path exists prior to watching it with chokidar to prevent errors (Thanks to bgunson)
+- Increment patch version of dependencies to fix vulerabilities
+
 Version: 0.1.2
 ------------
 - Bug fixes
