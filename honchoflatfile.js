@@ -155,7 +155,7 @@ HonchoFlatFile.prototype.connectNow = function(cParam) {
 
 	// Check if path exists before going any further
 	if (!fs.existsSync(cParam.path)) {
-		self.connectError.apply(self, arguments);
+		self.connectError.apply(self, [{ code: 'ENOENT' }]);  // Return an error rather than undefined
 		return;
 	}
 
