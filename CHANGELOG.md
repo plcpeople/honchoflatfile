@@ -1,3 +1,7 @@
+Version: 0.1.4
+------------
+- Return an error in callback on timeout
+
 Version: 0.1.3
 ------------
 - Check if path exists prior to watching it with chokidar to prevent errors (Thanks to bgunson)
