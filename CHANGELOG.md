@@ -1,3 +1,11 @@
+Version: 0.1.6
+------------
+- Rewrite to handle more cases
+
+Version: 0.1.5
+------------
+- Minor fixes to attempt to handle file renaming and deletion better
+
 Version: 0.1.4
 ------------
 - Return an error in callback on timeout

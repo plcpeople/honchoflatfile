@@ -42,4 +42,57 @@ Usage:
 		}
 	}
 ```
+Test Procedure
+If this file requires modification, follow the test procedures below to verify proper functionality of the HonchoFlatFile integration.
+
+HonchoFlatFile Testing
+Test #1 — Start Komodo Connection with No Folder Path Configured
+Expected Results
+
+- Service is running
+- Webpage is running
+- [Target Tag/Data Point] reports -999.00
+- After an extended period without communication, the status changes to NO COM
+
+Test #2 — Komodo Connection with Valid Folder Path but No CSV File Present
+Expected Results
+
+- Service is running
+- Webpage is running
+- [Target Tag/Data Point] reports -999.00
+- After an extended period without communication, the status changes to NO COM
+
+Test #3 — Valid Folder Path with CSV File Present but Not Updating
+Expected Results
+
+- Service is running
+- Webpage is running
+- [Target Tag/Data Point] reports -999.00
+- After an extended period without new data, the status changes to NO COM
+
+Test #4 — Change the CSV File Name
+Expected Results
+
+- Service is running
+- Webpage is running
+- [Target Point] detects the file name change
+- The last known value remains active temporarily
+- Communication is eventually lost if no new lines are added, resulting in a NO COM status
+
+Test #5 — Append a New Line to the CSV File
+Expected Results
+
+- Service is running
+- Webpage is running
+- Newly added lines are detected and processed correctly
+- Values update normally on the webpage
+
+Test #6 — Add New Lines, Rename the File, Then Add Additional Lines
+Expected Results
+
+- Service is running
+- Webpage is running
+- New lines are processed correctly before the file rename
+- File name changes are detected successfully
+- New lines added after the rename are also processed correctly
 
